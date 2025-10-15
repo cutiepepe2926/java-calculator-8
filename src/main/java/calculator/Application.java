@@ -1,18 +1,20 @@
 package calculator;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-
+// 일반 import
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+// 정적 import
+import static camp.nextstep.edu.missionutils.Console.readLine;
+
 public class Application {
+
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
-
-
         System.out.println("덧셈할 문자열을 입력해 주세요.");
-        String textLine = readLine(); //camp.nextstep.edu.missionutils.Console의 static 메서드 readLine()
+        // camp.nextstep.edu.missionutils.Console의 static 메서드 readLine()
+        String textLine = readLine();
 
         // 입력이 비어있는 경우 0을 반환하고 종료
         if (textLine == null || textLine.trim().isEmpty()) {
@@ -27,22 +29,24 @@ public class Application {
         Matcher matcher = pattern.matcher(textLine);
 
         // 커스텀 구분자 존재하는 지 판별
-        if(matcher.find()){
+        if (matcher.find()) {
 
-            // 커스텀 구분자를 담을 변수 생서
+            // 커스텀 구분자를 담을 변수 생성
             String customSeparator = matcher.group(1);
 
             // matcher.end() → //X\n 뒤의 실제 숫자 구간만 남기기
             textLine = textLine.substring(matcher.end());
 
             // 숫자, 기본 구분자(, :), 커스텀 구분자 정규식
-            String regex = "^[0-9,:" + Pattern.quote(customSeparator) + "]*$";
+            String regex =
+                    "^[0-9,:" + Pattern.quote(customSeparator) + "]*$";
 
             // 숫자, 기본 구분자(, :), 커스텀 구분자만 포함하는지 검사
-            if(textLine.matches(regex)){
+            if (textLine.matches(regex)) {
 
                 // 입력 문자열 내의 ":" 또는 커스텀 구분자를 ","로 통일
-                textLine = textLine.replaceAll(":|" + Pattern.quote(customSeparator), ",");
+                textLine = textLine.replaceAll(":|" +
+                        Pattern.quote(customSeparator), ",");
 
                 // 쉼표(,) 기준으로 숫자 분리
                 String[] parts = textLine.split(",");
@@ -56,8 +60,7 @@ public class Application {
                 // 최종 결과 출력
                 System.out.printf("결과 : %d", result);
 
-            }
-            else {
+            } else {
                 // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
                 try {
                     throw new IllegalArgumentException("잘못된 입력");
@@ -67,9 +70,7 @@ public class Application {
                 }
             }
 
-        }
-        // 커스텀 구분자가 존재하지 않는 경우
-        else {
+        } else { // 커스텀 구분자가 존재하지 않는 경우
 
             // 숫자, 쉼표(,), 콜론(:)만 허용하는 정규식
             String regex = "^[0-9,:]*$";
@@ -88,8 +89,7 @@ public class Application {
 
                 // 최종 결과 출력
                 System.out.printf("결과 : %d", result);
-            }
-            else {
+            } else {
                 // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
                 try {
                     throw new IllegalArgumentException("잘못된 입력");
@@ -99,7 +99,5 @@ public class Application {
                 }
             }
         }
-
-
     }
 }
