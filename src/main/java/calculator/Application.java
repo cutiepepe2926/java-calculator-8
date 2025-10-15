@@ -39,6 +39,15 @@ public class Application {
                 // 쉼표(,) 기준으로 숫자 분리
                 String[] parts = textLine.split(",");
 
+                // 각 숫자를 합산
+                int result = 0;
+                for (String part : parts) {
+                    result += Integer.parseInt(part);
+                }
+
+                // 최종 결과 출력
+                System.out.printf("결과 : %d", result);
+
             }
             else {
                 System.out.println("문제있음");
@@ -57,6 +66,14 @@ public class Application {
                 // 쉼표(,) 기준으로 숫자 분리
                 String[] parts = textLine.split(",");
 
+                // 각 숫자를 합산
+                int result = 0;
+                for (String part : parts) {
+                    result += Integer.parseInt(part);
+                }
+
+                // 최종 결과 출력
+                System.out.printf("결과 : %d", result);
             }
             else {
                 System.out.println("문제있음");
