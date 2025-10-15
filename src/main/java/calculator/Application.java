@@ -48,8 +48,12 @@ public class Application {
             // 숫자, 쉼표(,), 콜론(:)만 허용하는 정규식
             String regex = "^[0-9,:]*$";
             if (textLine.matches(regex)) {
-                System.out.println("문제없음");
-            } else {
+                // ":"를 ","로 변환 (기본 구분자 통일)
+                textLine = textLine.replaceAll(":", ",");
+
+
+            }
+            else {
                 System.out.println("문제있음");
             }
         }
