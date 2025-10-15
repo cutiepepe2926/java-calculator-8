@@ -36,6 +36,9 @@ public class Application {
                 // 입력 문자열 내의 ":" 또는 커스텀 구분자를 ","로 통일
                 textLine = textLine.replaceAll(":|" + Pattern.quote(customSeparator), ",");
 
+                // 쉼표(,) 기준으로 숫자 분리
+                String[] parts = textLine.split(",");
+
             }
             else {
                 System.out.println("문제있음");
@@ -51,6 +54,8 @@ public class Application {
                 // ":"를 ","로 변환 (기본 구분자 통일)
                 textLine = textLine.replaceAll(":", ",");
 
+                // 쉼표(,) 기준으로 숫자 분리
+                String[] parts = textLine.split(",");
 
             }
             else {
