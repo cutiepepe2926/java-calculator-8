@@ -20,26 +20,22 @@ public class Application {
 
         // 커스텀 구분자 존재하는 지 판별
         if(matcher.find()){
-            System.out.println("커스텀 구분자 존재 O");
 
             // 커스텀 구분자를 담을 변수 생서
             String customSeparator = matcher.group(1);
 
-            // 정상 추출 확인
-            System.out.println(customSeparator);
-
             // matcher.end() → //X\n 뒤의 실제 숫자 구간만 남기기
             textLine = textLine.substring(matcher.end());
-
-            System.out.println(textLine);
 
             // 숫자, 기본 구분자(, :), 커스텀 구분자 정규식
             String regex = "^[0-9,:" + Pattern.quote(customSeparator) + "]*$";
 
             // 숫자, 기본 구분자(, :), 커스텀 구분자만 포함하는지 검사
             if(textLine.matches(regex)){
-                System.out.println("문제없음");
-                
+
+                // 입력 문자열 내의 ":" 또는 커스텀 구분자를 ","로 통일
+                textLine = textLine.replaceAll(":|" + Pattern.quote(customSeparator), ",");
+
             }
             else {
                 System.out.println("문제있음");
