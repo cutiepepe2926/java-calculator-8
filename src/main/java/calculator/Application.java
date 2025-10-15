@@ -21,6 +21,18 @@ public class Application {
         // 커스텀 구분자 존재하는 지 판별
         if(matcher.find()){
             System.out.println("커스텀 구분자 존재 O");
+
+            // 커스텀 구분자를 담을 변수 생서
+            String customSeparator = matcher.group(1);
+
+            // 정상 추출 확인
+            System.out.println(customSeparator);
+
+            // 커스텀 구분자 0 ~ 4 인덱스 제거
+            textLine = textLine.substring(matcher.end());
+
+            System.out.println(textLine);
+
         }
         else {
             System.out.println("커스텀 구분자 존재 X");
