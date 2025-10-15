@@ -43,7 +43,7 @@ public class Application {
             // 모든 구분자를 ',' 기준으로 통일
             textLine = handler.normalizeSeparators(textLine, customSeparator);
 
-            // 문자열을 ',' 기준으로 분리 → 숫자 배열 반환
+            // 문자열을 ',' 기준으로 분리 -> 숫자 배열 반환
             String[] parts = handler.separateTextLines(textLine);
 
             // 숫자 합계 계산
@@ -64,7 +64,7 @@ public class Application {
         // ':'를 ','로 통일
         textLine = handler.normalizeSeparators(textLine);
 
-        // 문자열을 ',' 기준으로 분리 → 숫자 배열 반환
+        // 문자열을 ',' 기준으로 분리 -> 숫자 배열 반환
         String[] parts = handler.separateTextLines(textLine);
 
         // 숫자 합계 계산
