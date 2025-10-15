@@ -50,7 +50,13 @@ public class Application {
 
             }
             else {
-                System.out.println("문제있음");
+                // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
+                try {
+                    throw new IllegalArgumentException("잘못된 입력");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                    throw e; // 프로그램 종료
+                }
             }
 
         }
@@ -76,7 +82,13 @@ public class Application {
                 System.out.printf("결과 : %d", result);
             }
             else {
-                System.out.println("문제있음");
+                // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
+                try {
+                    throw new IllegalArgumentException("잘못된 입력");
+                } catch (IllegalArgumentException e) {
+                    System.out.println(e.getMessage());
+                    throw e; // 프로그램 종료
+                }
             }
         }
 
