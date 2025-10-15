@@ -28,10 +28,22 @@ public class Application {
             // 정상 추출 확인
             System.out.println(customSeparator);
 
-            // 커스텀 구분자 0 ~ 4 인덱스 제거
+            // matcher.end() → //X\n 뒤의 실제 숫자 구간만 남기기
             textLine = textLine.substring(matcher.end());
 
             System.out.println(textLine);
+
+            // 숫자, 기본 구분자(, :), 커스텀 구분자 정규식
+            String regex = "^[0-9,:" + Pattern.quote(customSeparator) + "]*$";
+
+            // 숫자, 기본 구분자(, :), 커스텀 구분자만 포함하는지 검사
+            if(textLine.matches(regex)){
+                System.out.println("문제없음");
+                
+            }
+            else {
+                System.out.println("문제있음");
+            }
 
         }
         else {
