@@ -42,9 +42,16 @@ public class Application {
             }
 
         }
+        // 커스텀 구분자가 존재하지 않는 경우
         else {
-            System.out.println("커스텀 구분자 존재 X");
 
+            // 숫자, 쉼표(,), 콜론(:)만 허용하는 정규식
+            String regex = "^[0-9,:]*$";
+            if (textLine.matches(regex)) {
+                System.out.println("문제없음");
+            } else {
+                System.out.println("문제있음");
+            }
         }
 
 
