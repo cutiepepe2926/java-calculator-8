@@ -62,12 +62,7 @@ public class Application {
 
             } else {
                 // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
-                try {
-                    throw new IllegalArgumentException("잘못된 입력");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    throw e; // 프로그램 종료
-                }
+                handleInvalidInput();
             }
 
         } else { // 커스텀 구분자가 존재하지 않는 경우
@@ -91,13 +86,13 @@ public class Application {
                 System.out.printf("결과 : %d", result);
             } else {
                 // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
-                try {
-                    throw new IllegalArgumentException("잘못된 입력");
-                } catch (IllegalArgumentException e) {
-                    System.out.println(e.getMessage());
-                    throw e; // 프로그램 종료
-                }
+                handleInvalidInput();
             }
         }
+    }
+
+    // 잘못된 입력(허용되지 않은 문자 포함 시) 예외 처리
+    private static void handleInvalidInput() {
+        throw new IllegalArgumentException();
     }
 }
