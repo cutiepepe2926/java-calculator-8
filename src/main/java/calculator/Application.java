@@ -9,8 +9,16 @@ public class Application {
     public static void main(String[] args) {
         // TODO: 프로그램 구현
 
+
+
         System.out.println("덧셈할 문자열을 입력해 주세요.");
         String textLine = readLine(); //camp.nextstep.edu.missionutils.Console의 static 메서드 readLine()
+
+        // 입력이 비어있는 경우 0을 반환하고 종료
+        if (textLine == null || textLine.trim().isEmpty()) {
+            System.out.println("결과 : 0");
+            return;
+        }
 
         // 커스텀 구분자를 찾는 정규표현식 패턴
         Pattern pattern = Pattern.compile("^//(.)(?:\\\\n)");
