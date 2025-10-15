@@ -47,14 +47,26 @@ public class Application {
         return matcher.find();
     }
 
-    // 커스텀 구분자 처리
-    private static void handleCustomSeparator(String textLine) {
+    // 커스텀 구분자 추출
+    private static Matcher extractCustomSeparator(String textLine) {
         Pattern pattern = Pattern.compile("^//(.)(?:\\\\n)");
         Matcher matcher = pattern.matcher(textLine);
         matcher.find();
 
+        return matcher;
+    }
+
+    // 숫자 부분만 추출 (//X\n 제거)
+    private static String extractNumberPart(String textLine, Matcher matcher) {
+        return textLine.substring(matcher.end());
+    }
+
+    // 커스텀 구분자 처리
+    private static void handleCustomSeparator(String textLine) {
+
+        Matcher matcher = extractCustomSeparator(textLine);
         String customSeparator = matcher.group(1);
-        textLine = textLine.substring(matcher.end());
+        textLine = extractNumberPart(textLine, matcher);
 
         String regex = "^[0-9,:" + Pattern.quote(customSeparator) + "]*$";
         if (!textLine.matches(regex)) {
@@ -75,14 +87,19 @@ public class Application {
             return;
         }
 
-        textLine = textLine.replaceAll(":", ",");
+        textLine = normalizeSeparators(textLine);
         int result = calculateSum(textLine);
         printResult(result);
     }
 
-    // 입력 문자열 내 구분자 통일
+    // 입력 문자열 내 구분자 통일(커스텀 구분자가 있는 경우)
     private static String normalizeSeparators(String textLine, String customSeparator) {
         return textLine.replaceAll(":|" + Pattern.quote(customSeparator), ",");
+    }
+
+    // 입력 문자열 내 구분자 통일(커스텀 구분자가 없는 경우)
+    private static String normalizeSeparators(String textLine) {
+        return textLine.replaceAll(":", ",");
     }
 
     // 문자열을 숫자로 변환 후 합산
